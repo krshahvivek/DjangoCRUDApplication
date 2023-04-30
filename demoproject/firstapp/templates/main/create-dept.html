@@ -1,0 +1,45 @@
+{% extends "main/base.html" %} 
+{% block title %} Create a Department {% endblock %} 
+{% block content %}
+<div class="row">
+  <div class="col-sm-4">
+    <h4 class="text-center alert alert-info"> Add New Department </h4>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success">Add</button>
+    </form>
+  </div>
+  <div class="col-sm-7 offset-1">
+    <h4 class="text-center alert alert-info"> Show Information </h4>
+  {% if data %}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Code</th>
+          <th scope="col">Name</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for datum in data%}
+          <tr>
+            <th scope="row">{{datum.id}}</th>
+            <td>{{datum.code}}</td>
+            <td>{{datum.name}}</td>
+            <td>
+              <!-- <a href="{% url 'deletedept' datum.id %}" method="post" class="btn btn-warning ">Edit</a>
+              <a href="{% url 'deletedept' datum.id %}" class="btn btn-danger ">Delete</a> -->
+              <form action="{% url 'deletedept' datum.id %}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-danger" value="Delete">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+  </div>
+</div>
+{% endblock content %}
