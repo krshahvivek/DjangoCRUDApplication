@@ -29,8 +29,10 @@
             <td>{{datum.code}}</td>
             <td>{{datum.name}}</td>
             <td>
-              <!-- <a href="{% url 'deletedept' datum.id %}" method="post" class="btn btn-warning ">Edit</a>
-              <a href="{% url 'deletedept' datum.id %}" class="btn btn-danger ">Delete</a> -->
+              <!-- <form action="{% url 'editedept' datum.id %}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-warning" value="Edit">Edit</button>
+              </form> -->
+              <a href="{% url 'editedept' datum.id %}" class="btn btn-warning bt-sm">Edit</a>
               <form action="{% url 'deletedept' datum.id %}" method="post" class="d-inline">
                 <button type="submit" class="btn btn-danger" value="Delete">Delete</button>
               </form>

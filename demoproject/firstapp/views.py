@@ -46,3 +46,32 @@ def delete_employee(request, id):
         dept.delete()
         emp.delete()
         return HttpResponse('/Data deleted')
+    
+@csrf_exempt
+def edit_dept(request, id):
+    if request.method == 'POST':
+        print('::::::::::::::::::dept::::::::::::::::::::::::',dept)
+        dept = Dept.objects.get(pk=id)
+        update_data = DeptForm(request.POST, instance=dept)
+        if update_data.is_valid():
+            update_data.save()
+    else:
+        dept = Dept.objects.get(pk=id)
+        update_data = DeptForm(instance=dept)
+        print(':::::::',dept)
+    return render(request, 'main/update-data.html', {'id': update_data})
+    
+@csrf_exempt
+def edit_employee(request, id):
+    if request.method == 'POST':
+        emp = Employess.objects.get(pk=id)
+
+        update_data = EmployeesForm(request.POST, instance=emp)
+        print(':::::::',update_data)
+        if update_data.is_valid():
+            update_data.save()
+    else:
+        emp = Employess.objects.get(pk=id)
+        update_data = EmployeesForm(instance=emp)
+        print(':::::::',update_data)
+    return render(request, 'main/update-data2.html', {'id': update_data})

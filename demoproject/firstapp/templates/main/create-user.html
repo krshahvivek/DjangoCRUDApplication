@@ -35,6 +35,9 @@
             <td>{{datum.dept}}</td>
             <td>{{datum.salary}}</td>
             <td>
+              <form action="{% url 'editemployee' datum.id %}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-warning" value="Edit">Edit</button>
+              </form>
               <form action="{% url 'deleteemployee' datum.id %}" method="post" class="d-inline">
                 <button type="submit" class="btn btn-danger" value="Delete">Delete</button>
               </form>
